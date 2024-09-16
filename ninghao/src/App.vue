@@ -1,5 +1,5 @@
 <template>
-  <h3>{{ name }}</h3>
+  <h3>{{ appName }}</h3>
 </template>
 
 <script lang="ts">
@@ -12,7 +12,9 @@ export default {
   }, 
 
   computed: {
-    ...mapState(['name']) // 获取 state 里面的 name 属性
+    ...mapState({
+      appName: 'name'
+    }) // 获取 state 里面的 name 属性
   }
 };
 </script>
