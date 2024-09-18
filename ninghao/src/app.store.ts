@@ -6,6 +6,12 @@ import { createStore } from "vuex";
 const store = createStore({
     state: {
         name: '哔哩哔哩'
+    }, 
+
+    getters: {
+        name(state) {
+            return `🎈 ${state.name}`; 
+        }
     }
 });
 

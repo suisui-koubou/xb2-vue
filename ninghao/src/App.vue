@@ -1,10 +1,10 @@
 <template>
-  <h3>{{ appName }}</h3>
+  <h3>{{ name }}</h3>
 </template>
 
 <script lang="ts">
 
-import { mapState } from 'vuex';
+import { mapState, mapGetters} from 'vuex';
 
 export default {
   data() {
@@ -12,9 +12,11 @@ export default {
   }, 
 
   computed: {
-    ...mapState({
-      appName: 'name'
-    }) // 获取 state 里面的 name 属性
+    // ...mapState({
+    //   appName: 'name'
+    // }) // 获取 state 里面的 name 属性
+
+    ...mapGetters(['name'])
   }
 };
 </script>
