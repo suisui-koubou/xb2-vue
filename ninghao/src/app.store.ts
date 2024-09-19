@@ -3,18 +3,12 @@ import { createStore } from "vuex";
 
 // 创建 store
 // (可以把数据放到 store 里面 的 state , 允许任意一个 vue 组件使用)。
-const store = createStore({
+const myStore = createStore({
     state: {
-        name: '哔哩哔哩'
+        name: '哔哩哔哩📺'
     }, 
-
-    getters: {
-        name(state) {
-            return `🎈 ${state.name}`; 
-        }
-    }
 });
 
-export default store; 
+export default myStore; 
 
 
