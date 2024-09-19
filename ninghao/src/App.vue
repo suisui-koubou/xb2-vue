@@ -12,10 +12,6 @@ export default {
   }, 
 
   computed: {
-    // ...mapState({
-    //   appName: 'name'
-    // }) // 获取 state 里面的 name 属性
-
     ...mapGetters(['name'])
   }
 };
