@@ -5,8 +5,7 @@ import AppStore from './app.store';
 /**
  * 创建应用
  */
-const app = createApp(App); 
-app.config.globalProperties.$store = AppStore; 
+const app = createApp(App);
 
 /**
  * 应用 Store 或者 路由的方法 

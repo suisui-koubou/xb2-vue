@@ -4,19 +4,11 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, getCurrentInstance } from 'vue';
+<script>
+import { defineComponent } from 'vue';
 import { mapGetters, mapMutations } from 'vuex'; 
 
-let $store; 
-
 export default defineComponent({
-  setup(){
-    $store = getCurrentInstance()?.appContext.config.globalProperties.$store;
-    console.log($store);
-  }, 
-
-
   data() {
     return { }
   },
