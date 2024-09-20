@@ -13,18 +13,22 @@ export default defineComponent({
     return { }
   },
 
+  created() {
+    this.$store.dispatch('getName');
+  }, 
+
   computed: {
     ...mapGetters(['name']), 
-  }, 
+  },
 
   methods: {
     ...mapMutations(['setName']), 
 
     onClickName(){
-      if (this.$store.state.name === '哔哩哔哩'){
+      if (this.$store.state.name === '宁浩网'){
         this.setName('Bilibili'); 
       }else{
-        this.setName('哔哩哔哩'); 
+        this.setName('宁浩网'); 
       }
     }
   }

@@ -5,7 +5,7 @@ import { createStore } from "vuex";
 // (可以把数据放到 store 里面 的 state , 允许任意一个 vue 组件使用)。
 const store = createStore({
     state: {
-        name: '哔哩哔哩'
+        name: ''
     }, 
 
     getters: {
@@ -17,6 +17,13 @@ const store = createStore({
     mutations: {
         setName(state, newData) {
             state.name = newData; 
+        }
+    }, 
+
+    actions: {
+        getName(this){ 
+            const name = '宁浩网'; 
+            this.commit('setName', name); 
         }
     }
 });
