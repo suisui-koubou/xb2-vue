@@ -22,9 +22,9 @@ export default defineComponent({
 
     onClickName(){
       if (this.$store.state.name === '哔哩哔哩'){
-        this.$store.commit('setName', 'Bilibili'); 
+        this.setName('Bilibili'); 
       }else{
-        this.$store.commit('setName', '哔哩哔哩')
+        this.setName('哔哩哔哩'); 
       }
     }
   }
