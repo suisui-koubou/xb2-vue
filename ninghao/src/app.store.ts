@@ -21,9 +21,9 @@ const store = createStore({
     }, 
 
     actions: {
-        getName(this){ 
+        getName(context){ 
             const name = '宁浩网'; 
-            this.commit('setName', name); 
+            context.commit('setName', name); 
         }
     }
 });
