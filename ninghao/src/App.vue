@@ -6,7 +6,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { mapGetters, mapMutations } from 'vuex'; 
+import { mapGetters, mapMutations, mapActions } from 'vuex'; 
 
 export default defineComponent({
   data() {
@@ -14,7 +14,8 @@ export default defineComponent({
   },
 
   created() {
-    this.$store.dispatch('getName');
+    // this.$store.dispatch('getName');
+    this.getName(); 
   }, 
 
   computed: {
@@ -23,6 +24,10 @@ export default defineComponent({
 
   methods: {
     ...mapMutations(['setName']), 
+
+    ...mapActions({
+      getName: 'getName'
+    }), 
 
     onClickName(){
       if (this.$store.state.name === '宁浩网'){
