@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 v-on:click="onClickName">{{ getName }}</h3>
+    <h3 v-on:click="onClickName">{{ name }}</h3>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapGetters(['getName']), 
+    ...mapGetters(['name']), 
   }, 
 
   methods: {

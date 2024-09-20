@@ -9,7 +9,7 @@ const store = createStore({
     }, 
 
     getters: {
-        getName(state) {
+        name(state) {
             return `🎈 ${state.name}`; 
         }
     },
