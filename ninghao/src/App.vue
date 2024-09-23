@@ -15,7 +15,7 @@ export default defineComponent({
 
   created() {
     // this.$store.dispatch('getName');
-    this.getName(); 
+    this.getName(); // 在 methods 里面的 mapActions 解构出来了。
   }, 
 
   computed: {
