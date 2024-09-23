@@ -1,29 +1,33 @@
 <template>
-  <div>
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="page">
+    <div class="card">
+      <div class="card__header">
+        <h3 class="card-title">{{ name }}</h3>
+        <div class="card-subtitle"> Transition & Animation </div>
+      </div>
+      <div class="card__content">
+        <div class="emoji">🌲</div>
+      </div>
+      <div class="card__action">
+        <button>请按这里</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
 
 export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      name: '宁浩网', 
+    }
   }
 });
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import './styles/app.css';
+@import './styles/card.css';
 </style>
