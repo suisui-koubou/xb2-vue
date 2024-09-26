@@ -5,4 +5,11 @@
 
 .emoji {
     font-size: 80px;
+    transition: 1s;
 }
+
+.hidden {
+    opacity: 0.1;
+    transform: translateY(30px);
+}
+

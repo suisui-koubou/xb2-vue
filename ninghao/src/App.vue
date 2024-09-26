@@ -6,10 +6,10 @@
         <div class="card-subtitle"> Transition & Animation </div>
       </div>
       <div class="card__content">
-        <div class="emoji">🌲</div>
+        <div :class="['emoji', {hidden: !isActive}]">🌲</div>
       </div>
       <div class="card__action">
-        <button>请按这里</button>
+        <button @click="isActive = !isActive">请按这里</button>
       </div>
     </div>
   </div>
@@ -21,7 +21,8 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   data() {
     return {
-      name: '宁浩网', 
+      name: '宁浩网',  
+      isActive: true, 
     }
   }
 });
