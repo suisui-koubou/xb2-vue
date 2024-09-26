@@ -9,9 +9,10 @@
         <div :class="['emoji', {hidden: !isActive}]">🌲</div>
       </div>
       <div class="card__action">
-        <button @click="isActive = !isActive">请按这里</button>
+        <button @click="isActive = !isActive" :class="{ 'active': isActive }">请按这里</button>
       </div>
     </div>
+    <div class="status"><small>isActive: {{ isActive }}</small></div>
   </div>
 </template>
 
@@ -22,7 +23,7 @@ export default defineComponent({
   data() {
     return {
       name: '宁浩网',  
-      isActive: true, 
+      isActive: false, 
     }
   }
 });
