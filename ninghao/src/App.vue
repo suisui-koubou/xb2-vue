@@ -6,7 +6,7 @@
         <div class="card-subtitle"> Transition & Animation </div>
       </div>
       <div class="card__content">
-        <div :class="['emoji', {hidden: !isActive}]">🌲</div>
+        <div :class="['emoji', { pulse : !isActive}]">🌲</div>
       </div>
       <div class="card__action">
         <button @click="isActive = !isActive" :class="{ 'active': isActive }">请按这里</button>
