@@ -11,6 +11,7 @@
         <transition name="tree"
           enter-active-class="animate__animated animate__flip"
           leave-active-class="animate__animated animate__fadeOutTopLeft"
+          mode="out-in"
         >
           <component :is="currentEmoji"></component>
         </transition> 
