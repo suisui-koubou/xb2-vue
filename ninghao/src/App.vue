@@ -12,7 +12,7 @@
           enter-active-class="animate__animated animate__flip"
           leave-active-class="animate__animated animate__fadeOutTopLeft"
         >
-          <div v-if="isActive" :class="['emoji', { pulse : !isActive}]">🌲</div>
+          <component :is="currentEmoji"></component>
         </transition> 
       </div>
       <div class="card__action">
@@ -23,15 +23,28 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent } from 'vue';
+import womanPoliceEmoji from './components/woman-police-emoji.vue';
+import momoEmoji from './components/momo-emoji.vue';
 
 export default defineComponent({
   data() {
     return {
       name: '宁浩网',  
-      isActive: false, 
+      isActive: false
     }
+  }, 
+
+  computed: {
+    currentEmoji(){
+      return this.isActive ? 'momoEmoji' : 'womanPoliceEmoji'; 
+    }
+  },  
+
+  components: {
+    womanPoliceEmoji, 
+    momoEmoji
   }
 });
 </script>
