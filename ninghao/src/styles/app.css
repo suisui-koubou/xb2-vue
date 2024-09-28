@@ -91,3 +91,14 @@
 }
 
 
+.pulse-enter-active {
+    animation: pulse 1s;    /* pulse is a keyframe */
+}
+
+.pulse-leave-active {
+    animation: pulse 1s;
+}
+
+
+
+
