@@ -8,7 +8,7 @@
       <div class="card__content">
         <!-- v-if使得普通组件失去动画效果，如果想做切入和切出的动画，可以用 transition 包装，
          移除和加入会出现 v-enter-active v-enter-to 等类(自动添加的，也可自己定义) -->
-        <transition>
+        <transition name="slide">
           <div v-if="isActive" :class="['emoji', { pulse : !isActive}]">🌲</div>
         </transition> 
       </div>
