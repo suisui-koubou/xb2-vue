@@ -37,3 +37,27 @@
 }
 
 
+.v-enter-from {
+    opacity: 0;
+}
+
+.v-enter-active {
+    transition: 0.5s;
+}
+
+.v-enter-to{
+    opacity: 1;
+}
+
+
+.v-leave-from {
+    opacity: 1;
+}
+
+.v-leave-active {
+    transition: 0.5s;
+}
+
+.v-leave-to {
+    opacity: 0;
+}
