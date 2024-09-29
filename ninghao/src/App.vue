@@ -6,18 +6,10 @@
         <div class="card-subtitle"> Transition & Animation </div>
       </div>
       <div class="card__content">
-        <transition-group name="custom"
-          leave-active-class="animate__animated animate__tada"
-        >
-          <!-- :key 是用来操作元素的，所以不建议key绑定 index -->
-          <div class="emoji" v-for="emoji in emojiList" :key="emoji"> 
-            {{ emoji }}
-          </div>
-        </transition-group>
+        <div class="emoji"> {{ animatedNumber }} </div>
       </div>
       <div class="card__action">
-        <button @click="shuffle" :class="{ 'active': isActive }">请按这里</button>
-        <button @click="pop" :class="{ 'active': !isActive }">请按这里</button>
+        <button @click="number = number + 100" :class="{ 'active': isActive }">请按这里</button>
       </div>
     </div>
     <div class="status"><small>isActive: {{ isActive }}</small></div>
@@ -27,6 +19,7 @@
 <script>
 import { defineComponent } from 'vue';
 import _ from 'lodash'; 
+import gsap from 'gsap';  
 
 
 export default defineComponent({
@@ -34,9 +27,24 @@ export default defineComponent({
     return {
       name: '宁浩网',  
       isActive: false,
-      emojiList: ['♠️', '♣️', '♥️', '♦️']
+      emojiList: ['♠️', '♣️', '♥️', '♦️'], 
+      number: 0, 
+      tweenedNumber: 0, 
     }
   },
+
+  computed: {
+    animatedNumber() {
+      return this.tweenedNumber.toFixed(0); 
+    }
+  }, 
+
+  watch: {
+    // 观察 this.$data.number 这个变量
+    number(newVal){
+      gsap.to(this.$data, {duration: 0.5, tweenedNumber: newVal}); 
+    }
+  }, 
 
   methods: {
     shuffle() {
