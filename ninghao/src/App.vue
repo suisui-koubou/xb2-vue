@@ -6,7 +6,9 @@
         <div class="card-subtitle"> Transition & Animation </div>
       </div>
       <div class="card__content">
-        <transition-group name="slide">
+        <transition-group name="custom"
+          leave-active-class="animate__animated animate__tada"
+        >
           <!-- :key 是用来操作元素的，所以不建议key绑定 index -->
           <div class="emoji" v-for="emoji in emojiList" :key="emoji"> 
             {{ emoji }}
