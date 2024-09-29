@@ -6,7 +6,7 @@
         <div class="card-subtitle"> Transition & Animation </div>
       </div>
       <div class="card__content">
-        <transition-group>
+        <transition-group name="slide">
           <!-- :key 是用来操作元素的，所以不建议key绑定 index -->
           <div class="emoji" v-for="emoji in emojiList" :key="emoji"> 
             {{ emoji }}
@@ -15,6 +15,7 @@
       </div>
       <div class="card__action">
         <button @click="shuffle" :class="{ 'active': isActive }">请按这里</button>
+        <button @click="pop" :class="{ 'active': !isActive }">请按这里</button>
       </div>
     </div>
     <div class="status"><small>isActive: {{ isActive }}</small></div>
@@ -38,6 +39,10 @@ export default defineComponent({
   methods: {
     shuffle() {
       this.emojiList = _.shuffle(this.emojiList); 
+    }, 
+
+    pop() {
+      this.emojiList.pop(); 
     }
   }
 });
