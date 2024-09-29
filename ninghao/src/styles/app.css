@@ -99,4 +99,7 @@
     animation: pulse 1s;
 }
 
+.v-move {
+    transition: 0.3s;
+}
 
