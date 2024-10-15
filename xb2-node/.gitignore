@@ -1,0 +1,15 @@
+/dist
+/node_modules
+
+.DS_Store 
+
+.vscode/*
+
+# environment variables 
+#.env*
+
+package-lock.json
+
+config/*.key
+
+uploads/*
