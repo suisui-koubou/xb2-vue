@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors'; 
 import postRouter from '../post/post.router';
 import userRouter from '../user/user.router'; 
 import authRouther from '../auth/auth.router'; 
@@ -21,6 +22,11 @@ const app = express();
  * 处理 JSON
  */
 app.use(express.json());
+
+/**
+ * 跨域资源共享
+ */
+app.use(cors()); 
 
 /**
  * 路由
