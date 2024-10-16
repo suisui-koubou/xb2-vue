@@ -28,6 +28,14 @@ axios.interceptors.response.use(
     }
 ); 
 
-export { axios };
+
+/**
+ * axios 实例(实例化)
+ */
+const apiHttpClient = axios.create({
+    baseURL: 'http://localhost:3000', 
+}); 
+
+export { axios, apiHttpClient };
 
 
