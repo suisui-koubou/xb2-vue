@@ -25,8 +25,14 @@ export default defineComponent({
 
   async mounted(){
     try {
-      const res = await axios.get('/posts', 
-        { baseURL: 'http://localhost:3000' });
+      const res = await axios({
+        method: 'get', 
+        url: '/posts', 
+        baseURL: 'http://localhost:3000', 
+        headers: {
+          'X-Custom': 'hello ~'
+        }
+      }); 
       this.posts = res.data;    
     } catch (err){
       this.errorMassage = err.message; 
