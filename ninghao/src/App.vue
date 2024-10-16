@@ -1,6 +1,9 @@
 <template>
   <div>
     <h3>{{ greeting }}</h3>
+    <div v-for="post in posts" :key="post.id">
+      {{ post.title }} - <small>{{ post.user.name }}</small>  
+    </div>  
   </div>
 </template>
 
@@ -14,14 +17,20 @@ export default defineComponent({
   data() {
     return {
       greeting: 'Hello World!', 
+      posts: []
     }
   }, 
 
   mounted(){
-    axios.get('http://localhost:3000/posts').then(res=>{
-      this.greeting = res.data[0].title;
-      
-		}); 
+    axios
+      .get('http://localhost:3000/posts1')
+      .then(res => {
+        this.posts = res.data; 
+      })
+      .catch(err =>{
+        console.log(err.response);
+        console.log(err.message);  
+      }); 
   }
 });
 </script>

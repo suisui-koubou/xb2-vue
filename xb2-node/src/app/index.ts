@@ -26,7 +26,10 @@ app.use(express.json());
 /**
  * 跨域资源共享
  */
-app.use(cors()); 
+app.use(cors({
+    origin: '*', 
+    exposedHeaders: 'X-Total-Count' // 允许使用的自定义的头部
+})); 
 
 /**
  * 路由
