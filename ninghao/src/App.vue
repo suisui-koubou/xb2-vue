@@ -1,6 +1,7 @@
 <template>
   <div>
     <h3>{{ greeting }}</h3>
+    <div>{{ errorMassage }}</div>
     <div v-for="post in posts" :key="post.id">
       {{ post.title }} - <small>{{ post.user.name }}</small>  
     </div>  
@@ -17,20 +18,19 @@ export default defineComponent({
   data() {
     return {
       greeting: 'Hello World!', 
-      posts: []
+      posts: [], 
+      errorMassage: ''
     }
   }, 
 
-  mounted(){
-    axios
-      .get('http://localhost:3000/posts1')
-      .then(res => {
-        this.posts = res.data; 
-      })
-      .catch(err =>{
-        console.log(err.response);
-        console.log(err.message);  
-      }); 
+  async mounted(){
+    try {
+      const res = await axios.get('/posts', 
+        { baseURL: 'http://localhost:3000' });
+      this.posts = res.data;    
+    } catch (err){
+      this.errorMassage = err.message; 
+    }
   }
 });
 </script>
