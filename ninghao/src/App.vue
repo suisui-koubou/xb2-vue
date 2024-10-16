@@ -10,7 +10,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import axios from 'axios'; 
+import { axios } from '@/app.service'; 
 
 export default defineComponent({
   name: 'App',
@@ -25,14 +25,7 @@ export default defineComponent({
 
   async mounted(){
     try {
-      const res = await axios({
-        method: 'get', 
-        url: '/posts', 
-        baseURL: 'http://localhost:3000', 
-        headers: {
-          'X-Custom': 'hello ~'
-        }
-      }); 
+      const res = await axios.get('/posts'); 
       this.posts = res.data;    
     } catch (err){
       this.errorMassage = err.message; 
