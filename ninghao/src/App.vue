@@ -19,7 +19,12 @@ export default defineComponent({
     return {
       greeting: 'Hello World!', 
       posts: [], 
-      errorMassage: ''
+      errorMassage: '', 
+      user: {
+        name: 'randoruf', 
+        password: '1234'
+      }, 
+      token: '' 
     }
   }, 
 
@@ -29,6 +34,15 @@ export default defineComponent({
       this.posts = res.data;    
     } catch (err){
       this.errorMassage = err.message; 
+    }
+
+    // 用户登录
+    try {
+      const res = await apiHttpClient.post('/login', this.user); 
+      this.token = res.data.token; 
+      console.log('Token: ', this.token); 
+    } catch(error) {
+      this.errorMassage = error.message; 
     }
   }
 });
