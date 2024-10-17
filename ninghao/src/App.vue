@@ -1,6 +1,9 @@
 <template>
   <div>
     <h3>{{ greeting }}</h3>
+
+    <UserLogin />
+
     <small>Title: </small><input type="text" v-model="title" @keyup.enter="createPost">
     <div>{{ errorMassage }}</div>
     <div v-for="post in posts" :key="post.id">
@@ -15,34 +18,22 @@
 <script>
 import { defineComponent } from 'vue';
 import { apiHttpClient } from '@/app.service'; 
+import UserLogin from '@/components/user/user-login.vue';
 
 export default defineComponent({
   name: 'App',
 
   data() {
     return {
-      greeting: 'Hello World!', 
+      greeting: '樱花动漫', 
       posts: [], 
       errorMassage: '', 
-      user: {
-        name: 'randoruf', 
-        password: '1234'
-      }, 
       token: '' 
     }
   }, 
 
   async mounted(){
     this.getPosts(); 
-
-    // 用户登录
-    try {
-      const res = await apiHttpClient.post('/login', this.user); 
-      this.token = res.data.token; 
-      console.log('Token: ', this.token); 
-    } catch(error) {
-      this.errorMassage = error.message; 
-    }
   },
 
   methods: {
@@ -97,9 +88,14 @@ export default defineComponent({
         this.errorMassage = error.message; 
       }
     }
+  }, 
+
+  components: {
+    UserLogin, 
   }
 });
 </script>
 
 <style>
+@import "./styles/app.css"; 
 </style>
