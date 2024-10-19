@@ -22,7 +22,7 @@
         <div v-if="!publishedByCurrentUser(post.user.id)">
           {{ post.title }} <small> - {{ post.user.name }}</small>  
         </div>
-        <div v-if="isUserLoggerIn">
+        <div v-if="isUserLoggerIn && publishedByCurrentUser(post.user.id)">
           <input type="text" :value="post.title" @keyup.enter="updatePost($event, post.id)">  
           <button @click="deletePost(post.id)">Delete</button>
         </div>
