@@ -2,16 +2,33 @@
   <div>
     <h3>{{ greeting }}</h3>
 
-    <UserLogin />
-
-    <small>Title: </small><input type="text" v-model="title" @keyup.enter="createPost">
+    <UserLogin v-if="!isUserLoggerIn" @login-success="onLoginSuccess" @login-fail="onLoginFail"/>
     <div>{{ errorMassage }}</div>
-    <div v-for="post in posts" :key="post.id">
+
+    <div v-if="currentUser">
+      用户名: {{ currentUser.name }}
+    </div>
+
+    <div v-if="isUserLoggerIn">
+      <h3>创建内容</h3>
+      <small>Title: </small><input type="text" v-model="title" @keyup.enter="createPost">
+    </div>
+
+    <div>
+      <h3>内容列表</h3>
+      <div v-for="post in posts" :key="post.id">
       <!-- 这里的 $event 是什么意思呢??? -->
-      <input type="text" :value="post.title" @keyup.enter="updatePost($event, post.id)">  
-      <button @click="deletePost(post.id)">Delete</button>
-      {{ post.title }} - <small>{{ post.user.name }}</small>  
+      <div>
+        <div v-if="!publishedByCurrentUser(post.user.id)">
+          {{ post.title }} <small> - {{ post.user.name }}</small>  
+        </div>
+        <div v-if="isUserLoggerIn">
+          <input type="text" :value="post.title" @keyup.enter="updatePost($event, post.id)">  
+          <button @click="deletePost(post.id)">Delete</button>
+        </div>
+      </div>
     </div>  
+    </div>
   </div>
 </template>
 
@@ -28,7 +45,14 @@ export default defineComponent({
       greeting: '樱花动漫', 
       posts: [], 
       errorMassage: '', 
-      token: '' 
+      token: '', 
+      currentUser: null
+    }
+  }, 
+
+  computed: {
+    isUserLoggerIn(){
+      return this.token ? true : false; 
     }
   }, 
 
@@ -37,6 +61,32 @@ export default defineComponent({
   },
 
   methods: {
+
+    publishedByCurrentUser(userId) {
+      return this.currentUser ? this.currentUser.id == userId : false;  
+    }, 
+
+    // 用户的登录状态通过 token 和 userId 保存在 localStorage 里面。
+    // 所以要知道用户名，还需要额外再发一次请求
+    async getCurrentUser(userId){
+      try {
+        const res = await apiHttpClient.get(`/users/${userId}`); 
+        this.currentUser = res.data; 
+      }catch(error){
+        this.errorMassage = error.message; 
+      }
+    },  
+
+    onLoginSuccess(data) { // 源自 response.data
+      this.token = data.token; 
+      this.getCurrentUser(data.id);
+    }, 
+
+    onLoginFail(data){ // 源自 error.response.data
+      this.errorMassage = data.message; 
+    }, 
+
+
     async deletePost(postId){
       try {
         const res = await apiHttpClient.delete(

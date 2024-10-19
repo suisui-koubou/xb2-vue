@@ -26,9 +26,13 @@ export default {
                     '/login', 
                     { name: this.username, password: this.password}
                 ); 
-                console.log(res.data); 
+                // 登录成功之后，触发的事件login-success 并传入参数 res.data 。
+                // 事件 login-success 在 <template> 的组件中定义，
+                this.$emit('login-success', res.data); 
             } catch (error) {
                 this.errorMassage = error.mesaage; 
+                // 
+                this.$emit('login-fail', error.response.data); 
             }
         }
     }
