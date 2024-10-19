@@ -6,7 +6,8 @@
     <div>{{ errorMassage }}</div>
 
     <div v-if="currentUser">
-      用户名: {{ currentUser.name }}
+      <div>用户名: {{ currentUser.name }}</div>
+      <button @click="logout">退出</button>
     </div>
 
     <div v-if="isUserLoggerIn">
@@ -60,7 +61,27 @@ export default defineComponent({
     this.getPosts(); 
   },
 
+  async created(){
+    const tid = localStorage.getItem('tid'); 
+    // FIXME: 这里是设计缺陷, userId 应该插入到 token payload 里面，防止被随意修改。
+    const uid = localStorage.getItem('uid'); 
+    if (tid) {
+      this.token = tid; 
+    } 
+    // FIXME: 这里是设计缺陷, userId 应该插入到 token payload 里面，防止被随意修改。
+    if (uid) {
+      this.currentUser = this.getCurrentUser(uid); 
+    }
+  }, 
+
   methods: {
+
+    logout(){
+      this.token = ''; 
+      this.currentUser = null; 
+      localStorage.removeItem('tid'); 
+      localStorage.removeItem('uid'); 
+    }, 
 
     publishedByCurrentUser(userId) {
       return this.currentUser ? this.currentUser.id == userId : false;  
@@ -80,6 +101,10 @@ export default defineComponent({
     onLoginSuccess(data) { // 源自 response.data
       this.token = data.token; 
       this.getCurrentUser(data.id);
+      // 设置 localstorage 
+      // FIXME: 这里是设计缺陷, userId 应该插入到 token payload 里面，防止被随意修改。
+      localStorage.setItem('tid', data.token);
+      localStorage.setItem('uid', data.id);  
     }, 
 
     onLoginFail(data){ // 源自 error.response.data
