@@ -1,0 +1,10 @@
+CREATE TABLE `avatar` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+  `mimetype` VARCHAR(255) NOT NULL,
+  `filename` VARCHAR(255) NOT NULL,
+  `size` INT(11) NOT NULL, 
+  `userId` INT(11) NOT NULL,
+  FOREIGN KEY (`userId`) REFERENCES `user`(`id`)
+      ON DELETE NO ACTION ON UPDATE NO ACTION   
+) DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci;

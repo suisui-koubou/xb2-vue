@@ -1,0 +1,43 @@
+{
+  "name": "xb2-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "./node_modules/.bin/tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "start:dev": "tsc-watch --onSuccess \"node dist/index.js\"",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "keywords": [],
+  "author": "宁皓网 https://www.bilibili.com/video/BV1uz421h7wo/",
+  "license": "ISC",
+  "description": "《小白兔的开发之路》",
+  "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.6",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "jimp": "^0.22.12",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.10.2",
+    "typescript": "^5.5.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/lodash": "^4.17.6",
+    "@types/multer": "^1.4.11",
+    "@types/mysql2": "github:types/mysql2",
+    "@types/supertest": "^6.0.2",
+    "dotenv": "^16.4.5",
+    "jest": "^29.7.0",
+    "prettier": "3.3.2",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.4",
+    "tsc-watch": "^6.2.0"
+  }
+}
