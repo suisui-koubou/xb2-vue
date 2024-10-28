@@ -5,11 +5,19 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+export default {
+  data() {
+    return {
+      name: '比特蠕动'
+    }; 
+  }, 
 
-export default defineComponent({
-  name: 'App',
-});
+  created() {
+    console.log(this.$store.state); 
+  }
+}
+
+
 </script>
 
 <style>
