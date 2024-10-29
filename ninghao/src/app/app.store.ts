@@ -1,5 +1,21 @@
-import { postStore } from "@/post/post.store";
+import { postStore, PostStoreState } from "@/post/post.store";
 import { createStore } from "vuex";
+
+// RootState 是怎样的类型呢?
+/* 
+    RootState:
+        appName, 
+        postStoreState: {
+            create: PostCreateStoreState: {
+                loading
+            }
+        }
+*/
+
+export interface RootState {
+    appName: string; 
+    post: PostStoreState; 
+}
 
 /**
  * create a store 
@@ -10,7 +26,7 @@ import { createStore } from "vuex";
 const store = createStore({
     state: {
         appName: '比特蠕动', 
-    }, 
+    } as RootState, 
 
     modules: {
         post: postStore
