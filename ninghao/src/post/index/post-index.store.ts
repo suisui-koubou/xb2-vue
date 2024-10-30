@@ -39,13 +39,15 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
 
     actions: {
         async getPosts({ commit }){
+            commit('setLoading', true); 
             try {
                 const response = await apiHttpClient.get('/posts');
                 commit('setLoading', false); 
                 commit('setPosts', response.data); 
                 return response; 
             } catch (error){
-                commit('setLoading', true); 
+                commit('setLoading', false); 
+                throw error;  
             }
         }
     }

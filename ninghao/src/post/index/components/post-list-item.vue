@@ -1,6 +1,12 @@
 <template>
     <div>
-        <h3>{{ item.title }}</h3><small>{{ item.user.name }}</small>
+        <h3>
+            <!-- to 的 name 是 routes 里面的路由地址，同时也告诉了参数的对应关系(routes也有参数) -->
+            <router-link :to="{name: 'postShow', params: {postId: item.id}}">
+                {{ item.title }}
+            </router-link>
+        </h3>
+        <small>{{ item.user.name }}</small>
     </div>
 </template>
 
