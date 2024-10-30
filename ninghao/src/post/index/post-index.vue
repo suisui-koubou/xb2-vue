@@ -12,7 +12,7 @@ export default {
     // 请求node后端。
     async created(){
         const response = await apiHttpClient.get('/posts'); 
-        
+        console.log(response); 
     }
 }
 </script>
