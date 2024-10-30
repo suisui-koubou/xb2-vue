@@ -1,17 +1,18 @@
 <template>
     <div>
-        <PostList />
+        <h3>{{ item.title }}</h3><small>{{ item.user.name }}</small>
     </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import PostList from './components/post-list.vue';
 
+//  
 export default defineComponent({
-    components: {
-        PostList
-    }
+    props: {
+        item: Object
+    }, 
 });
 </script>
 
+ 
