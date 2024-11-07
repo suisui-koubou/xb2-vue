@@ -4,9 +4,11 @@
 
 
 <script setup>
-  useHead({
-    titleTemplate(title){
-      return title ? `${title} - 比特蠕动` : '比特蠕动'; 
-    }
-  })
+const {name} = useAppConfig(); 
+
+useHead({
+  titleTemplate(title){
+    return title ? `${title} - ${name}` : name; 
+  }
+})
 </script>
