@@ -1,1 +1,0 @@
-export { default } from "file:///Users/haohua/Desktop/xb2-vue/ninghao-nuxt/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
