@@ -5,7 +5,7 @@
     </div>
 </template>
 
-<script>
+<script setup>
 useHead({
     title: '关于我们', 
 }); 
