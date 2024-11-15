@@ -2,9 +2,16 @@
     <div class="app">
         <header>
             <div>
-                <span>🎄</span> {{ name }}
+                <span>🎄</span> <NuxtLink to="/">{{ name }}</NuxtLink>
             </div>
-            <nav></nav>
+            <nav>
+                <div>
+                    <NuxtLink to="/posts">内容</NuxtLink>
+                </div>
+                <div>
+                    <NuxtLink to="/about">关于</NuxtLink>
+                </div>
+            </nav>
         </header>
         <main>
             <!-- 插槽用来显示组件 -->

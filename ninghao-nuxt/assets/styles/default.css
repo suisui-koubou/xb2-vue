@@ -198,6 +198,7 @@ body {
     margin-right: 8px;
   }
   
+  /* 路由链接在激活状态(点击后) */
   .router-link-active {
     font-weight: bold;
     color: black;
