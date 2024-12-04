@@ -38,4 +38,6 @@ const {
     () => `http://localhost:3001/posts?page=${page.value}`, 
 ); 
 
+
+useApiFetch(); // 成功使用了自己定义的组合。
 </script>
