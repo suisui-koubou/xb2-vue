@@ -4,6 +4,8 @@ Nuxt会扫描这个目录里面使用use作为前缀的文件里面定义的这�
 */
 
 export const useApiFetch = () => {
-    console.log('useApiFetch'); 
+    // 对象析构(只需提供对象的一部分)
+    const {public: {apiBaseUrl}} = useRuntimeConfig(); 
+    console.log(apiBaseUrl);  
 }
 
