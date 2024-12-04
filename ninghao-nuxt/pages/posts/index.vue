@@ -32,9 +32,10 @@ const {
     pending, 
     refresh, 
     error
-} = await useAsyncData('posts', () => 
-    $fetch(`http://localhost:3001/posts?page=${page.value}`),
-    { lazy: true } // 惰性加载(未加载时不会阻止导航)。
+} = await useFetch(
+    // useFetch 相当于 useAsyncData 和 $fetch 组合。
+    // 还有 useLazyFetch 相当于 useAsyncData 和 $fetch 组合，只不过设置 lazy=true。
+    () => `http://localhost:3001/posts?page=${page.value}`, 
 ); 
 
 </script>
