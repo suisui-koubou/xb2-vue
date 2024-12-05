@@ -204,3 +204,7 @@ body {
     color: black;
   }
   
+  .login-box {
+    position: absolute;
+    right: 0; 
+  }
