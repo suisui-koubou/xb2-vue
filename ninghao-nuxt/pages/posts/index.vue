@@ -18,7 +18,11 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { useRoute, useRouter} from 'vue-router';
+import { ref, watch } from 'vue';
+import { useApiFetch } from '../../composables/use-apii-fetch';
+import type { PostList } from '../../types/post.type';
 
 /* 
     在刷新页面的时候可以观察到，页面不会停留，会回到最开始的地方。
@@ -49,11 +53,11 @@ const forward = () => {
 }; 
 
 const {
-    data:posts, // 获取的数据data重命名为posts
+    data: posts, // 获取的数据data重命名为posts
     pending, 
     refresh, 
     error
-} = await useApiFetch(
+} = await useApiFetch<PostList>(
     // useFetch 相当于 useAsyncData 和 $fetch 组合。
     // 还有 useLazyFetch 相当于 useAsyncData 和 $fetch 组合，只不过设置 lazy=true。
     () => `posts?page=${page.value}`, 
