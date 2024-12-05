@@ -15,8 +15,9 @@
                     <div v-if="!currentUser">
                         <NuxtLink to="/login" class=''>登录</NuxtLink>
                     </div>
-                    <div v-if="currentUser">
-                        当前用户: {{ currentUser.name }}
+                    <div v-else>
+                        当前用户: {{ currentUser.name }} | 
+                        <a @click="useLogout" style="text-decoration: underline;">退出</a>
                     </div>
                 </div>
             </nav>

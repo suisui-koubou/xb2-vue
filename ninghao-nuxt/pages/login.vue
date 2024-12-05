@@ -39,7 +39,7 @@ const login = async () => {
     // console.log('name', name.value); 
     // console.log('password', password.value); 
 
-    const {data} = await useApiFetch<CurrentUser>('login', {
+    const {data} = await useApiFetch('login', {
         method: 'POST', 
         body: {
             name: name.value, 
