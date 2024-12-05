@@ -15,11 +15,22 @@ type UseApiFetchOptions = {
 export const useApiFetch = <T>(api: string | () => string, options: UseApiFetchOptions) => {
     // 对象析构(只需提供对象的一部分)
     const {public: {apiBaseUrl}} = useRuntimeConfig(); 
-    console.log(apiBaseUrl);  
+    // console.log(apiBaseUrl);  
+
+    const currentUser = useState('currentUser'); 
 
     // 添加统一的Base前缀。
     return useFetch<T>(api, { 
         baseURL: apiBaseUrl, 
+
+        onRequest: async (context) => {
+            if (currentUser.value){
+                context.options.headers = {
+                    Authorization: `Bearer ${currentUser.value.token}`
+                }; 
+            }
+        }, 
+
         ...options
     });  
 }
