@@ -11,6 +11,9 @@
                 <div>
                     <NuxtLink to="/about">关于</NuxtLink>
                 </div>
+                <div>
+                    <NuxtLink to="/login" class=''>登录</NuxtLink>
+                </div>
             </nav>
         </header>
         <main>
@@ -23,7 +26,6 @@
 <!-- 这里的 setup 是必须的。但是为什么呢??? setup有用吗?-->
 <script setup>
 const {name} = useAppConfig(); 
-
 </script>
 
 

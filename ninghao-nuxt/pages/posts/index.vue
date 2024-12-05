@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter} from 'vue-router';
 import { ref, watch } from 'vue';
-import { useApiFetch } from '../../composables/use-apii-fetch';
+import { useApiFetch } from '../../composables/use-api-fetch';
 import type { PostList } from '../../types/post.type';
 
 /* 
