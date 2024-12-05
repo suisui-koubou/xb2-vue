@@ -20,11 +20,11 @@
 const page = ref(1); // 组合模式下的响应数据
 const backward = () => {
     page.value--; 
-    refresh(); 
+    // refresh(); 由于 useApiFetch(() => `posts?page=${page.value}`) 可以根据 page.value 动态改变(函数的好处)，所以已经不需要刷新了。
 }; 
 const forward = () => {
     page.value++;
-    refresh(); 
+    // refresh(); 同上
 }; 
 
 const {
@@ -32,12 +32,10 @@ const {
     pending, 
     refresh, 
     error
-} = await useFetch(
+} = await useApiFetch(
     // useFetch 相当于 useAsyncData 和 $fetch 组合。
     // 还有 useLazyFetch 相当于 useAsyncData 和 $fetch 组合，只不过设置 lazy=true。
-    () => `http://localhost:3001/posts?page=${page.value}`, 
+    () => `posts?page=${page.value}`, 
 ); 
 
-
-useApiFetch(); // 成功使用了自己定义的组合。
 </script>

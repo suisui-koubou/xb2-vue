@@ -7,9 +7,12 @@ runtimeConfig可以被环境变量覆盖掉。
 NUXT_PUBLIC_API_BASE_URL=http://localhost:3001
 */
 
-export const useApiFetch = () => {
+export const useApiFetch = (api: string | () => string) => {
     // 对象析构(只需提供对象的一部分)
     const {public: {apiBaseUrl}} = useRuntimeConfig(); 
     console.log(apiBaseUrl);  
+
+    // 添加统一的Base前缀。
+    return useFetch(api, { baseURL: apiBaseUrl});  
 }
 
