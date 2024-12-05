@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     // 在 runtimeConfig 对象里面直接添加的东西是私有的配置。
     // 如果有定义公开的配置可以放在 runtimeConfig.public 下面。
     public: {
-        apiBaseUrl: 'http://localhost:3001', 
+        apiBaseUrl: '', // 在 .env 里面定义 NUXT_PUBLIC_API_BASE_URL 的时候，Nuxt会自动覆盖掉 apiBaseUrl 。
     }
   } 
 })
