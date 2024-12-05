@@ -59,4 +59,15 @@ const {
     () => `posts?page=${page.value}`, 
 ); 
 
+/* 
+可以发现再次点击 '内容' 时，页面不会刷新。
+在请求内容列表的之后，要刷新页面，并且观察如果Router有变化，也要更新 Page.value 的值。
+*/
+refresh(); 
+watch(useRoute(), ({query}) => {
+    if (query.page === undefined){
+        page.value = 1; 
+    }
+})
 </script>
+
