@@ -1,5 +1,8 @@
 <template>
     <div>
+        <Head>
+            <Title>{{ page >= 1 ? `内容列表 / 第${page}页` : '内容列表' }}</Title>
+        </Head>
         <h1>内容列表</h1>
         <div>
             <button @click="backward">上一页</button>
@@ -17,14 +20,32 @@
 
 <script setup>
 
-const page = ref(1); // 组合模式下的响应数据
+/* 
+    在刷新页面的时候可以观察到，页面不会停留，会回到最开始的地方。
+    想刷新的时候保存当前页码，可以将页码插入到路由地址里(URL)。
+    
+*/
+
+const {query: {page: pageNumber}} = useRoute(); // 解构出来重命名为 PageNumber。
+
+const router = useRouter(); 
+const updateQuery = () => {
+    router.push({query: {page: page.value}});
+}; 
+
+
+const page = ref(pageNumber ? parseInt(`${pageNumber}`, 10) : 1); // 组合模式下的响应数据。（根据情况设置初始值)
 const backward = () => {
-    page.value--; 
+    if (page.value > 1) {
+        page.value--; 
+    }
     // refresh(); 由于 useApiFetch(() => `posts?page=${page.value}`) 可以根据 page.value 动态改变(函数的好处)，所以已经不需要刷新了。
+    updateQuery(); // 页码(或称 状态)会被插入到URL地址框内。
 }; 
 const forward = () => {
     page.value++;
     // refresh(); 同上
+    updateQuery(); 
 }; 
 
 const {
