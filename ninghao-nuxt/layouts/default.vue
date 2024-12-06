@@ -8,6 +8,11 @@
                 <div>
                     <NuxtLink to="/posts">内容</NuxtLink>
                 </div>
+                <div v-if="currentUser">
+                    <NuxtLink to="/create">
+                        编辑
+                    </NuxtLink>
+                </div>
                 <div>
                     <NuxtLink to="/about">关于</NuxtLink>
                 </div>
