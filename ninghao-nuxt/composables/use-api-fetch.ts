@@ -12,7 +12,10 @@ type UseApiFetchOptions = {
     body?: Record<string, any>; 
 }
 
-export const useApiFetch = <T>(api: string | () => string, options: UseApiFetchOptions) => {
+export const useApiFetch = <T>(
+    api: string | () => string, 
+    options?: UseApiFetchOptions
+) => {
     // 对象析构(只需提供对象的一部分)
     const {public: {apiBaseUrl}} = useRuntimeConfig(); 
     // console.log(apiBaseUrl);  

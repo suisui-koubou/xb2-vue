@@ -13,6 +13,9 @@
             <div v-for="post in posts" :key="post.id">
                 <div>{{ post.title }}</div>
                 <div>- <small>{{ post.user.name }}</small></div>
+                <div>
+                    <NuxtLink :to="`/posts/${post.id}/edit`">编辑</NuxtLink>
+                </div>
             </div>
         </div>
     </div>
@@ -60,7 +63,7 @@ const {
 } = await useApiFetch<PostList>(
     // useFetch 相当于 useAsyncData 和 $fetch 组合。
     // 还有 useLazyFetch 相当于 useAsyncData 和 $fetch 组合，只不过设置 lazy=true。
-    () => `posts?page=${page.value}`, 
+    () => `posts?page=${page.value}`
 ); 
 
 /* 

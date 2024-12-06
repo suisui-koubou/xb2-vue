@@ -1,16 +1,57 @@
 <template>
-    <div>
-        <h1>文章{{ id }} 编辑</h1>
-    </div>
+    <form @submit.prevent>
+        <div>
+            <input type="text" placeholder="标题" v-model="title"/>
+        </div>
+        <div>
+            <textarea placeholder="正文" v-model="content"></textarea>
+        </div>
+        <div>
+            <button class="primary" @click="editPost">更新</button>
+        </div>
+    </form>
 </template>
 
-<script setup>
-const {
-    params: { id }, 
-} = useRoute(); 
 
-definePageMeta({
-    middleware: ['auth'], 
+<script setup lang="ts">
+import type { Post } from '~/types/post.type';
+
+
+useHead({title: '编辑内容'}); 
+const title = ref('');
+const content = ref(''); 
+
+// 至少要获取内容吧
+const {params: {id}} = useRoute(); 
+const {data:post} = await useApiFetch<Post>(`posts/${id}`); 
+if (post.value){
+    title.value = post.value.title;
+    content.value = post.value.content; 
+}
+
+// 路由器
+const router = useRouter(); 
+
+// 刷新后设置
+watch(post, (current) => {
+    title.value = current?.title! 
+    content.value = current?.content!
 })
+
+// 更新
+const editPost = async () => {
+    const {data} = await useApiFetch(`posts/${id}`, {
+        method: 'PATCH', 
+        body: {
+            title: title.value, 
+            content: content.value
+        }
+    }); 
+
+
+    if (data.value){
+        router.push('/posts')
+    }
+}; 
 
 </script>
