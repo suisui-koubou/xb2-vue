@@ -16,11 +16,13 @@
                 </div>
                 <div>
                     <NuxtLink :to="`/posts/${post.id}`">{{ post.title }}</NuxtLink>
+                    <div><small>Author: {{ post.user.name }}</small></div>
                 </div>
                 <div>{{ post.content }}</div>
-                <div>- <small>{{ post.user.name }}</small></div>
                 <div>
-                    <NuxtLink :to="`/posts/${post.id}/edit`">编辑</NuxtLink>
+                    <!-- 以下代码由百度文心一言提供 -->
+                    <NuxtLink class="nuxt-link-button" :to="`/posts/${post.id}/edit`">编辑</NuxtLink>
+                    <a @click="onDeletePost(post.id)" class="nuxt-link-button">删除</a>
                 </div>
             </div>
         </div>
@@ -40,6 +42,13 @@ import type { PostList } from '../../types/post.type';
 */
 
 // 
+const onDeletePost = async (postId: number) => {
+    await useApiFetch(`posts/${postId}`, {
+        method: 'DELETE', 
+    }); 
+    refresh(); 
+}
+
 const {
     public: {apiBaseUrl}
 } = useRuntimeConfig(); 

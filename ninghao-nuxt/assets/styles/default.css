@@ -208,3 +208,21 @@ body {
     position: absolute;
     right: 0; 
   }
+
+  /* 以下代码由文心一言提供(有了AI写代码真的很方便) */
+  .nuxt-link-button {
+    font-size: small;
+    display: inline-block;
+    padding: 5px 15px;
+    margin: 2px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+   
+  .nuxt-link-button:hover {
+    background-color: #555;
+  }
