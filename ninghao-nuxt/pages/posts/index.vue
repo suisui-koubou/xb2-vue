@@ -11,7 +11,13 @@
         <div v-if="pending">加载中...</div>
         <div v-if="posts !== null">
             <div v-for="post in posts" :key="post.id">
-                <div>{{ post.title }}</div>
+                <div v-if="post.files">
+                    <img style="max-width: 300px;" :src="`${apiBaseUrl}/files/show/${post.files[0].id}`" alt="post.title"/>
+                </div>
+                <div>
+                    <NuxtLink :to="`/posts/${post.id}`">{{ post.title }}</NuxtLink>
+                </div>
+                <div>{{ post.content }}</div>
                 <div>- <small>{{ post.user.name }}</small></div>
                 <div>
                     <NuxtLink :to="`/posts/${post.id}/edit`">编辑</NuxtLink>
@@ -32,6 +38,12 @@ import type { PostList } from '../../types/post.type';
     想刷新的时候保存当前页码，可以将页码插入到路由地址里(URL)。
     
 */
+
+// 
+const {
+    public: {apiBaseUrl}
+} = useRuntimeConfig(); 
+
 
 const {query: {page: pageNumber}} = useRoute(); // 解构出来重命名为 PageNumber。
 
@@ -76,5 +88,6 @@ watch(useRoute(), ({query}) => {
         page.value = 1; 
     }
 })
+console.log(posts.value[7].files[0].id); 
 </script>
 
