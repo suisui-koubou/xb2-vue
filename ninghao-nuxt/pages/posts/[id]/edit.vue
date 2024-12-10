@@ -1,5 +1,8 @@
 <template>
     <form @submit.prevent>
+        <div v-for="img in post.files" :key="img.id">
+            <img style="max-width: 300px;" :src="`${apiBaseUrl}/files/show/${img.id}`" alt="post.title"/>
+        </div>
         <div>
             <input type="text" placeholder="标题" v-model="title"/>
         </div>
@@ -15,6 +18,11 @@
 
 <script setup lang="ts">
 import type { Post } from '~/types/post.type';
+
+// 
+const {
+    public: {apiBaseUrl}
+} = useRuntimeConfig(); 
 
 
 useHead({title: '编辑内容'}); 
